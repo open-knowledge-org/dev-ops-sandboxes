@@ -2,17 +2,12 @@
 - This folder will be updated soon. 
 
 ##### Installation
-- Create gulpfile.js
-```json
-var gulp = require('gulp');
-
-gulp.task('default', function() {
-  // place code for your default task here
-});
+- Install NodeJS
+- Install Gulp runnig:
 ```
-- Run Gulp:
-```
-gulp
+npm install --global gulp-cli
+npm init
+npm install --save-dev gulp
 ```
 
 ###### Reference
