@@ -14,12 +14,3 @@ set PATH=%PATH%;%JAVA_HOME%\bin
 set ANT_HOME=c:\your local path
 set PATH=%PATH%;%ANT_HOME%\bin
 ```
-
-- Test your installation:
-```
-ant --version
-```
-
-##### References
-- [1] http://ant.apache.org/manual/install.html#windows
-- [2] http://www.javaworld.com/article/2076208/java-app-dev/automate-your-build-process-using-java-and-ant.html
