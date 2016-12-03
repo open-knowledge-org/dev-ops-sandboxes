@@ -1,3 +1,5 @@
 ##### Introduction
 - This folder will be updated soon. 
-- Priority Order: [> 6]
+
+##### Reference
+- [1] http://gettingstartedwithchef.com/first-steps-with-chef.html
