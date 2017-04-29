@@ -1,20 +1,8 @@
-##### Unofficial fork from wsargent/docker-cheat-sheet
-# Docker Cheat Sheet
-
-**Want to improve this cheat sheet?  See the [Contributing](#contributing) section!**
-
-## A Tasteful Plug for Lightbend
-
-I work for [Lightbend](https://lightbend.com) on the [Play](https://playframework.com/) team.  I think the company is awesome, and if you're looking at containers because you're moving to the cloud and thinking about distributed systems, you should keep reading.
-
-Lightbend make microservices happen.  Developers use [Lagom](http://www.lagomframework.com/) to put together resilient ("chaos monkey resistant") microservices.  In production, there's [Conductr](https://conductr.lightbend.com/) to [orchestrate](http://www.cakesolutions.net/teamblogs/typesafe-conductr-the-missing-glue-between-dev-and-ops) containers -- [including Docker](https://www.lightbend.com/blog/reactive-for-devops-part-3-using-docker-with-conductr-on-the-jvm).  Finally, there's [monitoring](https://developer.lightbend.com/docs/monitoring/latest/home.html) to tell you what's going on at a detailed application level, so you know where your CPU and memory resources are being spent, and can scale up and down based on that information.  For more, check out the [devops site](https://www.lightbend.com/platform/production).
-
-This concludes the tasteful plug.
+##### Unofficial fork from [wsargent/docker-cheat-sheet](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md)
+# Docker Cheat Sheet - Quick Ref
 
 ## Table of Contents
 
-* [Why Docker](#why-docker)
-* [Prerequisites](#prerequisites)
 * [Installation](#installation)
 * [Containers](#containers)
 * [Images](#images)
@@ -28,33 +16,10 @@ This concludes the tasteful plug.
 * [Best Practices](#best-practices)
 * [Security](#security)
 * [Tips](#tips)
-* [Contributing](#contributing)
-
-## Why Docker
-
-"With Docker, developers can build any app in any language using any toolchain. “Dockerized” apps are completely portable and can run anywhere - colleagues’ OS X and Windows laptops, QA servers running Ubuntu in the cloud, and production data center VMs running Red Hat.
-
-Developers can get going quickly by starting with one of the 13,000+ apps available on Docker Hub. Docker manages and tracks changes and dependencies, making it easier for sysadmins to understand how the apps that developers build work. And with Docker Hub, developers can automate their build pipeline and share artifacts with collaborators through public or private repositories.
-
-Docker helps developers build and ship higher-quality applications, faster." -- [What is Docker](https://www.docker.com/what-docker#copy1)
-
-## Prerequisites
-
-I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) for autocompletion of docker commands. YMMV.
-
-### Linux
-
-The 3.10.x kernel is [the minimum requirement](https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies) for Docker.
-
-### MacOS
-
- 10.8 “Mountain Lion” or newer is required.
 
 ## Installation
 
 ### Linux
-
-Quick and easy install script provided by Docker:
 
 ```
 curl -sSL https://get.docker.com/ | sh
@@ -62,37 +27,9 @@ curl -sSL https://get.docker.com/ | sh
 
 If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/engine/installation/linux/) instructions for your distribution.
 
-If you are a complete Docker newbie, you should follow the [series of tutorials](https://docs.docker.com/engine/getstarted/) now.
-
-### Mac OS X
-
-Download and install [Docker Toolbox](https://docs.docker.com/toolbox/overview/).  [Docker For Mac](https://docs.docker.com/docker-for-mac/) is nice, but it's not quite as finished as the VirtualBox install.  [See the comparison](https://docs.docker.com/docker-for-mac/docker-toolbox/).
-
-> **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly (either from URL or `docker-machine upgrade default`) and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
->
-> You are much better off using Docker Toolbox DMG file to upgrade, which will take care of all the binaries at once.
-
-Once you've installed Docker Toolbox, install a VM with Docker Machine using the VirtualBox provider:
-
-```
-docker-machine create --driver=virtualbox default
-docker-machine ls
-eval "$(docker-machine env default)"
-```
-
-Then start up a container:
-
-```
-docker run hello-world
-```
-
-That's it, you have a running Docker container.
-
-If you are a complete Docker newbie, you should probably follow the [series of tutorials](https://docs.docker.com/engine/getstarted/) now.
-
 ## Containers
 
-[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/). Containers are to Virtual Machines as threads are to processes. Or you can think of them as chroots on steroids.
+[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/).
 
 ### Lifecycle
 
@@ -346,27 +283,11 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) sets the system call signal that will be sent to the container to exit.
 * [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.
 
-### Tutorial
-
-* [Flux7's Dockerfile Tutorial](http://flux7.com/blogs/docker/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
-
-### Examples
-
-* [Examples](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
-* [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
-* [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
-* [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Building Better Docker Images](http://jonathan.bergknoff.com/journal/building-better-docker-images)
-* [Managing Container Configuration with Metadata](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
-
 ## Layers
 
 The versioned filesystem in Docker is based on layers. They're like [git commits or changesets for filesystems](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
 
 Note that if you're using [aufs](https://en.wikipedia.org/wiki/Aufs) as your filesystem, Docker does not always remove data volumes containers layers when you delete a container! See [PR 8484](https://github.com/docker/docker/pull/8484) for more details.
-
-## Links
-
-Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). [Linking into Redis](https://docs.docker.com/engine/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples. You can also resolve [links by hostname](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file).
 
 This has been deprected to some extent by [user-defined networks](https://docs.docker.com/engine/userguide/networking/#user-defined-networks).
 
@@ -744,24 +665,3 @@ For all containers listed by image:
 ```
 docker ps -a -f ancestor=ubuntu
 ```
-
-
-## Contributing
-
-Here's how to contribute to this cheat sheet.
-
-### Open README.md
-
-Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- this link
-
-![Click This](images/click.png)
-
-### Edit Page
-
-![Edit This](images/edit.png)
-
-### Make Changes and Commit
-
-![Change This](images/change.png)
-
-![Commit](images/commit.png)
