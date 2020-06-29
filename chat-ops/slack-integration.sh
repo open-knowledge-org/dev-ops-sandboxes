@@ -3,6 +3,11 @@
 #https://api.slack.com/docs/message-attachments#attachment_parameters
 #https://www.flaticon.com/free-icon/
 
+# usage example for server update: 			sendSlackNotification $VERSION 0 :no_mouth:
+# usage example for server update failed: 	sendSlackNotification $VERSION 1 :no_mouth:
+# usage example for server rollback: 		sendSlackNotification $VERSION 3 :no_mouth:
+# usage example for server rollback failed: sendSlackNotification $VERSION 4 :no_mouth:
+
 function sendSlackNotification(){
  
     #epoch time
