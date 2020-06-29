@@ -1,0 +1,58 @@
+pipeline {
+    
+    agent { 
+        dockerfile true 
+    }
+    
+    options {
+        timeout(time: 20, unit: 'MINUTES') 
+    }
+    
+    environment {
+        nexus_user = credentials('nexus-user')   
+        nexus_pass = credentials('nexus-password')  
+        github_token = credentials('github-token')  
+        gitRepo = "github.com/<your-system.git"
+    }
+    
+    stages {
+        
+         stage('Update repository') {
+            steps {
+                sh "git remote set-url origin https://${github_token}@${gitRepo}"
+                sh "git fetch origin"
+            }
+        }
+        
+		stage('Build') {
+			when {
+		       not {
+		           branch 'master'
+		       }
+		    }
+			steps {
+				sh "git status"		
+				sh 'gradle clean build --no-daemon --info --stacktrace -Dhttp.socketTimeout=60000 -Dhttp.connectionTimeout=60000 -Dorg.gradle.internal.http.socketTimeout=60000 -Dorg.gradle.internal.http.connectionTimeout=60000'
+			}
+		}
+		
+        stage('Build and Release') {
+			when {
+                branch 'master'
+            }
+			steps {
+   			    sh "git reset --hard origin/master"
+                sh "git checkout master"
+                sh "git pull"
+				sh "git status"		
+				sh 'gradle clean release <your arguments>'
+			}
+		}
+    }
+    
+    post {
+        always {
+            junit(allowEmptyResults: true, testResults: '**/build/test-results/**/*.xml')
+        }
+    }
+}
