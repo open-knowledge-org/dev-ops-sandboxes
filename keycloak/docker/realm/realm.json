@@ -1327,7 +1327,7 @@
       },
       {
         "id": "b35534eb-f366-4a12-aaae-9d2311c9ee86",
-        "name": "Philips Certificate",
+        "name": "Certificate",
         "providerId": "rsa",
         "subComponents": {},
         "config": {

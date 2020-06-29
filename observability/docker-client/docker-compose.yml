@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+  grafana:
+    build: grafana
+    container_name: grafana
+    env_file: configuration.env
+    hostname: grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - ../volumes/grafana:/var/lib/grafana
+networks:
+  default:
+    external:
+      name: example-network

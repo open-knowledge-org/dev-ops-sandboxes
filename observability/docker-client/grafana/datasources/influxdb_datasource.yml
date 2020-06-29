@@ -1,0 +1,66 @@
+# config file version
+apiVersion: 1
+
+# list of datasources to insert/update depending
+# whats available in the database
+datasources:
+- name: InfluxDBJMeter
+  type: influxdb
+  access: direct
+  orgId: 1
+  url: http://<influx-db-ip>:8086
+  password: admin
+  user: admin
+  database: <database-name>
+  basicAuth: false
+  basicAuthUser: admin
+  basicAuthPassword: admin
+  withCredentials:
+  isDefault: true
+  version: 1
+  editable: true
+- name: InfluxDB-Telegraf
+  type: influxdb
+  access: direct
+  orgId: 1
+  url: http://<influx-telegraf-ip>:8086
+  password: admin
+  user: admin
+  database: telegraf
+  basicAuth: false
+  basicAuthUser: admin
+  basicAuthPassword: admin
+  withCredentials: false
+  isDefault: false
+  version: 1
+  editable: true
+- name: InfluxDB-Telegraf-Primary
+  type: influxdb
+  access: direct
+  orgId: 1
+  url: http://<influx-telegraf-ip-primary>:8086
+  password: admin
+  user: admin
+  database: telegraf
+  basicAuth: false
+  basicAuthUser: admin
+  basicAuthPassword: admin
+  withCredentials: false
+  isDefault: false
+  version: 1
+  editable: true
+- name: InfluxDB-Telegraf-Secondary
+  type: influxdb
+  access: direct
+  orgId: 1
+  url: http://<influx-telegraf-ip-secondary>:8086
+  password: admin
+  user: admin
+  database: telegraf
+  basicAuth: false
+  basicAuthUser: admin
+  basicAuthPassword: admin
+  withCredentials: false
+  isDefault: false
+  version: 1
+  editable: true
