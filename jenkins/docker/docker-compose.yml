@@ -1,0 +1,29 @@
+version: '3.2'
+services:
+  jenkins:
+    container_name: jenkins
+    build:
+      context: ./jenkins
+    ports:
+      - '80:8080'
+      - '50000:50000'
+    volumes:
+      - ./configs/jenkins/:/var/jenkins_home/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+  jenkins-slave:
+    container_name: jenkins-slave
+    build:
+      context: ./jenkins-slave
+    restart: always
+    environment:
+      - 'JENKINS_URL=http://jenkins:80'
+    links:
+      - "jenkins"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro  
+    depends_on:
+      - jenkins
+networks:
+  default:
+    external:
+      name: ci      

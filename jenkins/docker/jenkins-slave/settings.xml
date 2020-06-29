@@ -1,0 +1,39 @@
+<settings>
+
+	<servers>
+		<server>
+			<id>nexus</id>
+			<username>nexus-user</username>
+			<password>nexus-password</password>
+		</server>
+	</servers>
+
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>maven-release</name>
+			<url>http://<base-url>/content/repositories/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>nexus</id>
+			<name>maven-snapshoot</name>
+			<url>http://<base-url>/content/repositories/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	
+</settings>
