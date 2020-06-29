@@ -6,7 +6,56 @@
 ### Linux
 
 ```
-curl -sSL https://get.docker.com/ | sh
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+  
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+	
+sudo yum install docker-ce
+sudo usermod -aG docker $(whoami)
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+```
+
+#### Docker Compose Installing
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+
+#### Docker Proxy (if applicable)
+```
+sudo mkdir -p /etc/systemd/system/docker.service.d
+```
+```
+sudo nano /etc/systemd/system/docker.service.d/http-proxy.conf
+# http-proxy.conf content
+[Service]
+Environment="HTTP_PROXY=http://user:password@host:port/"
+```
+```
+sudo nano /etc/systemd/system/docker.service.d/https-proxy.conf
+# https-proxy.conf content
+[Service]
+Environment="HTTPS_PROXY=http://user:password@host:port/"
+```
+```
+sudo nano /etc/systemd/system/docker.service.d/no-proxy.conf
+# no-proxy.conf content
+[Service]
+Environment="NO_PROXY=http://user:password@host:port/"
+```
+```
+# Reload the systemd daemon
+sudo systemctl daemon-reload
+# Restart Docker
+systemctl restart docker
+# Show Environment Configs
+systemctl show docker --property Environment
 ```
 
 ### Lifecycle
