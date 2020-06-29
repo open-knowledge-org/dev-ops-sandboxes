@@ -1,0 +1,20 @@
+{
+  "name": "coyote-project",
+  "version": "1.0.0",
+  "description": "Always trying to delay the fastest one",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "load",
+    "test",
+    "performance",
+    "test",
+    "delay",
+    "coyote"
+  ],
+  "author": "eduardo.mioto",
+  "license": "ISC"
+}
