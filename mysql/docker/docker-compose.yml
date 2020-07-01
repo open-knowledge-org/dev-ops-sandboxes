@@ -1,0 +1,21 @@
+version: '2.3'
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: 'example'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'admin'
+      MYSQL_ROOT_PASSWORD: 'admin'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      -  ./volumes/mysql/:/var/lib/mysql
+networks:
+  default:
+    external:
+      name: mysql

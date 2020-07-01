@@ -1,0 +1,14 @@
+version: '2.3'
+services:
+  neo4j:
+    image: library/neo4j
+    container_name: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - ./volumes/neo4j/:/data/dbms
+networks:
+  default:
+    external:
+      name: neo4j

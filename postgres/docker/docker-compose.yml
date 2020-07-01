@@ -1,0 +1,16 @@
+version: '2.3'
+services:
+  postgres:
+    image: postgres:10.1
+    restart: unless-stopped
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=v07IGCFCF83Z95NX
+      - POSTGRES_DB=sonarqube
+    volumes:
+      -  ./volumes/postgres/:/var/lib/postgresql/data
+networks:
+  default:
+    external:
+      name: postgres

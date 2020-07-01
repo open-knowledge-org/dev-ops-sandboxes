@@ -1,0 +1,25 @@
+version: '2.3'
+services:
+  #acabd57e73d5c90b2970ceb792790df34993f59a  
+  # api token: d9ff9177032c82b1664f28bf1d6cc9cbe7c823a2  
+  sonarqube:
+    build:
+      context: ./applications/sonar
+    restart: unless-stopped
+    container_name: sonarqube
+    environment:
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=v07IGCFCF83Z95NX
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonarqube
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    volumes:
+      - ./volumes/sonarqube/conf:/opt/sonarqube/conf
+      - ./volumes/sonarqube/data:/opt/sonarqube/data
+      - ./volumes/sonarqube/extensions:/opt/sonarqube/extensions
+      - ./volumes/sonarqube/plugins:/opt/sonarqube/lib/bundled-plugins
+networks:
+  default:
+    external:
+      name: sonar
