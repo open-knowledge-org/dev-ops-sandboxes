@@ -6,7 +6,12 @@
 
 #### jvm_top
 
-###### jvmtop is a lightweight console application to monitor all accessible, running jvms on a machine.
-In a top-like manner, it displays JVM internal metrics (e.g. memory information) of running java processes.
+###### jvmtop is a lightweight console application to monitor all accessible, running jvms on a machine. In a top-like manner, it displays JVM internal metrics (e.g. memory information) of running java processes.
 
 - https://github.com/patric-r/jvmtop
+
+#### jvm_mon
+
+###### jvm-mon is console based JVM monitoring dashboard- when you just want to SSH into a server and see what's going on. jvm-top lets you monitor your JVM server applications from the terminal.
+
+- https://github.com/ajermakovics/jvm-mon
