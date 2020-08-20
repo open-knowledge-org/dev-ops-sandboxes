@@ -8,7 +8,7 @@ datasources:
   type: influxdb
   access: direct
   orgId: 1
-  url: http://<influxdb-ip>:8086
+  url: http://54.207.13.147:8086
   password: admin
   user: admin
   database: system
@@ -23,7 +23,7 @@ datasources:
   type: influxdb
   access: direct
   orgId: 1
-  url: http://influxdb-ip:8086
+  url: http://54.207.13.147:8086
   password: admin
   user: admin
   database: telegraf
