@@ -17,6 +17,14 @@ variable "aws_region" {
   default     = "us-west-2"
 }
 
+variable "access_key" {
+	description = "AWS access key."
+}
+
+variable "secret_key" {
+	description = "AWS secret key."
+}
+
 # Ubuntu Precise 12.04 LTS (x64)
 variable "aws_amis" {
   default = {
