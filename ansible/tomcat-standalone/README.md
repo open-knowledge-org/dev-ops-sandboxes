@@ -1,0 +1,1 @@
+ansible-playbook -i hosts site.yml --extra-vars "ansible_sudo_pass=<your_password>"  -e 'ansible_python_interpreter=/usr/bin/python3'
