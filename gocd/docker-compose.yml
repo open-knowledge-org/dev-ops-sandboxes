@@ -6,7 +6,10 @@ services:
       - "8153:8153"
       - "8154:8154"
     volumes:
-      - ./config/cruise-config.xml:/godata/config/cruise-config.xml
+      - ./configs/cruise-config.xml:/godata/config/cruise-config.xml
+      - ./volumes/plugins/:/var/lib/go-server/plugins
+      - ./volumes/db:/var/lib/go-server/db
+      - ./volumes/artifacts:/var/lib/go-server/artifacts
   go-agent1:
     image: gocd/gocd-agent-ubuntu-16.04:v17.9.0
     links:
