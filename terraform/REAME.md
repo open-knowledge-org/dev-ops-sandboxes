@@ -9,6 +9,14 @@ The terraform CLI is a well-behaved command line application. In erroneous cases
 
 - Download Terraform at https://www.terraform.io/downloads.html
 
+or
+
+```
+wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
+sudo unzip terraform_0.13.5_linux_amd64.zip 
+sudo mv terraform /usr/local/bin
+```
+
 ## AWS Profile
 
 1) Create an AWS cli profile named terraform for test purpose
