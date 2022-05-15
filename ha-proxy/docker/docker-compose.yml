@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+  ha-proxy:
+    build:
+      context: ./ha-proxy
+    container_name: ha-proxy
+    environment:
+    ports:
+      - 7000:70
+      - 9050:9050
+    logging:
+      options:
+        max-size: "256m"
+        max-file: "3"
